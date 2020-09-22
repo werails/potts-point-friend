@@ -1,0 +1,55 @@
+type Mutation {
+  login(email: String!, password: String!): Viewer
+}
+
+type Viewer {
+  id: ID
+  user: User
+}
+
+type User {
+  id: ID
+  uuid: String
+  firstName: String
+  lastName: String
+  email: String
+  token: String
+  exams: ExamConnection
+  currentExam: Exam
+  randomUnanswered: SourceQuestion
+  question: SourceQuestion
+}
+
+type Exam {
+  id: ID
+  name: String
+  published: String
+  paid: Boolean
+}
+
+type ExamConnection {
+  pageInfo: PageInfo
+  edges: [ExamEdge]
+}
+
+type ExamEdge {
+  node: Exam
+  cursor: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor: String
+  endCursor: String
+}
+
+type SourceQuestion {
+  id: ID
+  uuid: String
+  source: String
+  year: Int
+  paper: Int
+  text: String
+  image: String
+}
